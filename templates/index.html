@@ -7,9 +7,26 @@
         <title>ImageKit File Upload</title>
         <link rel="icon" href="" type="image/x-icon" sizes="16x16 32x32">
         <link rel="stylesheet" href="../static/css/main.css">
+        <!-- Google Fonts; Special Elite, Black Ops One -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto+Condensed&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root">
+            <span id="website-title">ImageKit File Upload</span>
+            <div id="operations-container">
+                <div id="files-stage" class="operations-container platform">
+                    <span class="files-stage message">You have not picked any files</span>
+                    <div id="stage-contents" class="files-stage"></div>
+                </div>
+                <div id="file-handling" class="operations-container">
+                    <input id="file-upload" name="file-upload" type="file" value="Upload Files" multiple/>
+                    <label for="file-upload" class="file-handing-buttons platform">Choose Files</label>
+                    <button class="file-handing-buttons platform">Upload Files</button>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="https://unpkg.com/imagekit-javascript/dist/imagekit.min.js"></script>
         <script src="../static/js/main.js"></script>
     </body>
