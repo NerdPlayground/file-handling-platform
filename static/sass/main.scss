@@ -1,0 +1,23 @@
+@import "functions";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --white: #f5f5f5;
+    --black: #333333;
+}
+
+body{
+    background-color: var(--white);
+    @include dimensions(100vw,100vw,100vh,100vh);
+}
+
+#root{
+    padding: 25px;
+    @include flex(column);
+    @include dimensions(100%,100%,100%,100%);
+}
