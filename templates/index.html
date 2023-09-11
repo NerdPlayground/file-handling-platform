@@ -17,11 +17,11 @@
             <span id="website-title">ImageKit File Upload</span>
             <div id="operations-container">
                 <div id="files-stage" class="operations-container platform">
-                    <span class="files-stage message">You have not picked any files</span>
+                    <span id="message" class="files-stage">You have not picked any files</span>
                     <div id="stage-contents" class="files-stage"></div>
                 </div>
                 <div id="file-handling" class="operations-container">
-                    <input id="file-upload" name="file-upload" type="file" value="Upload Files" multiple/>
+                    <input id="file-upload" name="file-upload" type="file" value="Upload Files" oninput="addFilesToStage(event)" multiple/>
                     <label for="file-upload" class="file-handing-buttons platform">Choose Files</label>
                     <button class="file-handing-buttons platform">Upload Files</button>
                 </div>

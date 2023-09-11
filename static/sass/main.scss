@@ -69,14 +69,18 @@ body{
             border-top-right-radius: $radius;
         }
         #stage-contents{
+            position: relative;
             flex-grow: 1;
             overflow: auto;
             @include flex(column,flex-start,flex-start);
             .staged-file{
+                position: relative;
+                left: 0;
                 margin-bottom: 15px;
                 @include flex(row,center);
                 @include dimensions(100%,100%);
                 @include border(var(--black),2px);
+                transition: left 1s ease-in-out;
                 $name: 93%;
                 $icon: calc(100% - #{$name});
                 .file-name{
