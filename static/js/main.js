@@ -5,12 +5,18 @@ var imageKit= new ImageKit({
 
 let FILES={};
 let FILECOUNT=0;
-let MESSAGE=document.getElementById("message");
+let TRASH=document.getElementById("message").lastElementChild;
+let MESSAGE=document.getElementById("message").firstElementChild;
 
 function displayMessage(){
-    return FILECOUNT===0?
-    `You have not picked any files` :
-    `${FILECOUNT} file${FILECOUNT>1?'s':''} staged for upload`;
+    if(FILECOUNT===0){
+        TRASH.style.visibility="hidden";
+        return `You have not picked any files`;
+    }
+    else{
+        TRASH.style.visibility="visible";
+        return `${FILECOUNT} file${FILECOUNT>1?'s':''} staged for upload`;
+    }
 }
 
 function removeFileFromStage(){

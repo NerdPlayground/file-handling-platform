@@ -59,14 +59,30 @@ body{
             @include dimensions(100%,100%);
         }
         #message{
-            padding: 10px;
-            margin-bottom: 15px;
-            text-align: center;
-            color: var(--white);
-            background-color: var(--black);
             $radius: 10px;
+            position: relative;
+            margin-bottom: 15px;
+            @include flex(row,center);
+            @include dimensions(100%,100%);
+            background-color: var(--black);
             border-top-left-radius: $radius;
             border-top-right-radius: $radius;
+            span{
+                padding: 10px;
+                text-align: center;
+                color: var(--white);
+                @include dimensions(100%,100%);
+                border-top-left-radius: $radius;
+                // @include border(red);
+            }
+            img{
+                position: absolute;
+                right: 0;
+                cursor: pointer;
+                visibility: hidden;
+                @include dimensions(7%,7%,35px,35px);
+                // @include border(red);
+            }
         }
         #stage-contents{
             position: relative;
