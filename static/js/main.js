@@ -19,16 +19,24 @@ function displayMessage(){
     }
 }
 
+function removeFilesFromStage(event){
+    let stageContents=document.getElementById("stage-contents");
+    let stagedFiles=Array.from(stageContents.children);
+    stagedFiles.forEach(stagedFile=>removeFileFromStage(stagedFile));
+}
+
 function removeFileFromStage(){
     let event=arguments[0];
-    let stagedFile=event.target.parentElement;
+    let stagedFile=event instanceof PointerEvent? event.target.parentElement : event;
     let fileName=stagedFile.firstElementChild.innerText;
     
     stagedFile.style.left="100%";
-    setTimeout(()=>{stagedFile.remove();},1000);
+    setTimeout(()=>{
+        stagedFile.remove();
+        MESSAGE.innerText=displayMessage();
+    },1000);
     delete FILES[fileName];
     FILECOUNT--;
-    MESSAGE.innerText=displayMessage();
 }
 
 function addFilesToStage(event){
