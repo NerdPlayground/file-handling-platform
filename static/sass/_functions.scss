@@ -1,3 +1,4 @@
+// set dimensions
 @mixin dimensions($width:fit-content,$max-width:fit-content,$height:fit-content,$max-height:fit-content){
     width: $width;
     max-width: $max-width;
@@ -5,6 +6,7 @@
     max-height: $max-height;
 }
 
+// set flexbox properties
 @mixin flex($direction,$align:stretch,$justify:flex-start){
     display: flex;
     flex-direction: $direction;
@@ -12,6 +14,7 @@
     justify-content: $justify;
 }
 
+// set text properties
 @mixin text($size,$line,$font-family,$color,$font-weight:normal){
     user-select: none;
     -ms-user-select: none;
@@ -25,12 +28,14 @@
     font-family: $font-family,monospace;
 }
 
+// set background image
 @mixin backgroundImage($url){
     background-size: cover;
     background-image: url($url);
     background-position: center;
 }
 
+// set border
 @mixin border($color:black,$width:1px,$style:solid){
     border: $width $style $color;
 }

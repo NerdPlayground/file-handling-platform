@@ -7,9 +7,9 @@
 }
 
 :root{
+    --red: #f50000;
     --white: #f5f5f5;
     --black: #333333;
-    --red: #f50000;
 }
 
 body{
@@ -27,7 +27,6 @@ body{
         margin-bottom: 10px;
         @include dimensions();
         @include text(40px,48px,"Black Ops One",var(--black));
-        // @include border(red);
     }
 }
 
@@ -37,7 +36,6 @@ body{
     @include flex(column,center,center);
     @include dimensions(750px,100%,100%,100%);
     @include text(22px,24px,"Roboto Condensed",var(--black));
-    // @include border(red,2px);
     .operations-container{
         padding: 25px;
         @include dimensions(100%,100%);
@@ -55,7 +53,6 @@ body{
         border-top-left-radius: $border-radius;
         border-top-right-radius: $border-radius;
         .files-stage{
-            // @include border(red);
             @include dimensions(100%,100%);
         }
         #message{
@@ -73,7 +70,6 @@ body{
                 color: var(--white);
                 @include dimensions(100%,100%);
                 border-top-left-radius: $radius;
-                // @include border(red);
             }
             img{
                 position: absolute;
@@ -81,7 +77,6 @@ body{
                 cursor: pointer;
                 visibility: hidden;
                 @include dimensions(7%,7%,35px,35px);
-                // @include border(red);
             }
         }
         #stage-contents{
@@ -147,7 +142,6 @@ body{
         }
         label{
             margin-right: 15px;
-            // border-right: 2px solid var(--black);
             border-bottom-left-radius: $border-radius;
         }
         button{

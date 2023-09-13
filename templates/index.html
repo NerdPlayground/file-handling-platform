@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Upload files to imageKit.io media library">
-        <title>ImageKit File Upload</title>
+        <meta name="description" content="stage and preview files before processing">
+        <title>File Handling Platform</title>
         <link rel="icon" href="" type="image/x-icon" sizes="16x16 32x32">
         <link rel="stylesheet" href="../static/css/main.css">
         <!-- Google Fonts; Special Elite, Black Ops One -->
@@ -14,7 +14,7 @@
     </head>
     <body>
         <div id="root">
-            <span id="website-title">ImageKit File Upload</span>
+            <span id="website-title">File Handling Platform</span>
             <div id="operations-container">
                 <div id="files-stage" class="operations-container platform">
                     <div id="message" class="files-stage">
@@ -24,9 +24,9 @@
                     <div id="stage-contents" class="files-stage"></div>
                 </div>
                 <div id="file-handling" class="operations-container">
-                    <input id="file-upload" name="file-upload" type="file" value="Upload Files" oninput="addFilesToStage(event)" multiple/>
+                    <input id="file-upload" name="file-upload" type="file" oninput="addFilesToStage(event)" multiple/>
                     <label for="file-upload" class="file-handing-buttons platform">Choose Files</label>
-                    <button class="file-handing-buttons platform">Upload Files</button>
+                    <button class="file-handing-buttons platform">Process Files</button>
                 </div>
             </div>
         </div>
