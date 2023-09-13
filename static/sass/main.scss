@@ -129,6 +129,7 @@ body{
             z-index: -1;
             overflow: hidden;
             position: absolute;
+            pointer-events: none;
             @include dimensions(0.1px,100%,0.1px,100%);
         }
         .file-handing-buttons{
