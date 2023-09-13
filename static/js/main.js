@@ -1,5 +1,6 @@
 let FILES={};
 let FILECOUNT=0;
+let FILESLOCKED=false;
 let TRASH=document.getElementById("message").lastElementChild;
 let MESSAGE=document.getElementById("message").firstElementChild;
 
@@ -14,30 +15,42 @@ function displayMessage(){
     }
 }
 
-function removeFilesFromStage(event){
-    let stageContents=document.getElementById("stage-contents");
-    let stagedFiles=Array.from(stageContents.children);
-    stagedFiles.forEach(stagedFile=>removeFileFromStage(stagedFile));
-}
-
-function removeFileFromStage(){
-    let event=arguments[0];
-    let stagedFile=event instanceof PointerEvent? event.target.parentElement : event;
+function remove(stagedFile){
     let fileName=stagedFile.firstElementChild.innerText;
-    
     stagedFile.style.left="100%";
     setTimeout(()=>{
         stagedFile.remove();
         MESSAGE.innerText=displayMessage();
     },1000);
-    delete FILES[fileName];
-    FILECOUNT--;
+    delete FILES[fileName]; FILECOUNT--;
+}
+
+function removeFilesFromStage(){
+    if(FILESLOCKED) return;
+    FILESLOCKED=true;
+
+    let stageContents=document.getElementById("stage-contents");
+    let stagedFiles=Array.from(stageContents.children);
+    stagedFiles.forEach(stagedFile=>remove(stagedFile));
+    setTimeout(()=>FILESLOCKED=false,1000);
+}
+
+function removeFileFromStage(){
+    if(FILESLOCKED) return;
+    FILESLOCKED=true;
+    
+    remove(arguments[0].target.parentElement);
+    setTimeout(()=>FILESLOCKED=false,1000);
 }
 
 function addFilesToStage(event){
+    if(FILESLOCKED) return;
+    FILESLOCKED=true;
+
     let files=Array.from(event.target.files);
     event.target.value="";
     if(files.length>0) stageFiles(files);
+    setTimeout(()=>FILESLOCKED=false,1000);
 }
 
 function stageFiles(files){
