@@ -7,6 +7,7 @@
 }
 
 :root{
+    --red: #f50000;
     --white: #f5f5f5;
     --black: #333333;
 }
@@ -18,6 +19,134 @@ body{
 
 #root{
     padding: 25px;
-    @include flex(column);
+    padding-top: 50px;
+    @include flex(column,center,center);
     @include dimensions(100%,100%,100%,100%);
+    #website-title{
+        display: block;
+        margin-bottom: 10px;
+        @include dimensions();
+        @include text(40px,48px,"Black Ops One",var(--black));
+    }
+}
+
+#operations-container{
+    $border-radius: 15px;
+    padding: 10px;
+    @include flex(column,center,center);
+    @include dimensions(750px,100%,100%,100%);
+    @include text(22px,24px,"Roboto Condensed",var(--black));
+    .operations-container{
+        padding: 25px;
+        @include dimensions(100%,100%);
+    }
+    .platform{
+        @include border(var(--black),2px);
+        $blur: 5px;
+        $distance: 5px;
+        box-shadow: $distance $distance $blur #939393,
+        calc(-1 * $distance) calc(-1 * $distance) $blur var(--white);
+    }
+    #files-stage{
+        min-height: 80%;
+        margin-bottom: 25px;
+        @include flex(column,flex-start,flex-start);
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+        .files-stage{
+            @include dimensions(100%,100%);
+        }
+        #message{
+            $radius: 10px;
+            position: relative;
+            margin-bottom: 15px;
+            @include flex(row,center);
+            @include dimensions(100%,100%);
+            background-color: var(--black);
+            border-top-left-radius: $radius;
+            border-top-right-radius: $radius;
+            span{
+                padding: 10px;
+                text-align: center;
+                color: var(--white);
+                @include dimensions(100%,100%);
+                border-top-left-radius: $radius;
+            }
+            img{
+                position: absolute;
+                right: 0;
+                cursor: pointer;
+                visibility: hidden;
+                @include dimensions(7%,7%,35px,35px);
+            }
+        }
+        #stage-contents{
+            position: relative;
+            flex-grow: 1;
+            overflow: auto;
+            @include flex(column,flex-start,flex-start);
+            .staged-file{
+                position: relative;
+                left: 0;
+                margin-bottom: 15px;
+                @include flex(row,center);
+                @include dimensions(100%,100%);
+                @include border(var(--black),2px);
+                transition: left 1s ease-in-out;
+                $name: 93%;
+                $icon: calc(100% - #{$name});
+                .file-name{
+                    padding: 10px;
+                    margin-right: 5px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    @include dimensions($name,$name);
+                }
+                .remove-file{
+                    cursor: pointer;
+                    @include dimensions($icon,$icon);
+                    @include flex(row,center,center);
+                    border-left: 2px solid var(--black);
+                    @include text(30px,32px,"Black Ops One",var(--red));
+                }
+            }
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+    }
+    #file-handling{
+        padding: 0;
+        @include flex(row);
+        position: relative;
+        #file-upload{
+            opacity: 0;
+            z-index: -1;
+            overflow: hidden;
+            position: absolute;
+            pointer-events: none;
+            @include dimensions(0.1px,100%,0.1px,100%);
+        }
+        .file-handing-buttons{
+            cursor: pointer;
+            display: block;
+            padding: 12.5px;
+            @include dimensions(50%,50%);
+            background-color: transparent;
+            text-align: center;
+            @include text(22px,24px,"Roboto Condensed",var(--black));
+            transition: box-shadow 0.15s ease-in-out;
+            &:active{
+                box-shadow: none;
+            }
+        }
+        label{
+            margin-right: 15px;
+            border-bottom-left-radius: $border-radius;
+        }
+        button{
+            border-bottom-right-radius: $border-radius;
+        }
+    }
 }
