@@ -112,6 +112,7 @@ function stageFiles(files){
     });
 }
 
+let ROOT=document.body;
 let THEMELOCKED=false; // controls access to the UI
 let INITIALDARKMODE=false; // set if dark theme is stored
 let BUTTON=document.getElementById("toggle-theme").firstElementChild;
@@ -120,11 +121,11 @@ let BUTTON=document.getElementById("toggle-theme").firstElementChild;
  * changes the UI depending on the theme selected by the user
 */
 function changeUI(add,remove,background){
-    let root=document.body;
-    root.classList.add(add);
-    root.classList.remove(remove);
+    ROOT.classList.add(add);
+    ROOT.classList.remove(remove);
     BUTTON.style.backgroundImage=background;
     THEMELOCKED=false;
+    console.log(ROOT.classList);
 }
 
 /**
@@ -135,7 +136,8 @@ function toggleTheme(){
     if(THEMELOCKED) return;
     THEMELOCKED=true;
 
-    let time=750;
+    let themeTime=getComputedStyle(ROOT).getPropertyValue("--theme-time");
+    let time=Number.parseFloat(themeTime)*1000;
     let modes=BUTTON.classList;
 
     if(modes.contains("dark-mode") || INITIALDARKMODE){
@@ -181,5 +183,5 @@ document.addEventListener("DOMContentLoaded",()=>{
             "light-mode-colors",
             `url('../static/images/moon.png')`
         );
-    };
+    }
 });
