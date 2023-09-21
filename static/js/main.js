@@ -111,3 +111,75 @@ function stageFiles(files){
         }
     });
 }
+
+let THEMELOCKED=false; // controls access to the UI
+let INITIALDARKMODE=false; // set if dark theme is stored
+let BUTTON=document.getElementById("toggle-theme").firstElementChild;
+
+/**
+ * changes the UI depending on the theme selected by the user
+*/
+function changeUI(add,remove,background){
+    let root=document.body;
+    root.classList.add(add);
+    root.classList.remove(remove);
+    BUTTON.style.backgroundImage=background;
+    THEMELOCKED=false;
+}
+
+/**
+ * sets user selected theme
+ * available themes; dark-mode, light-mode
+ */
+function toggleTheme(){
+    if(THEMELOCKED) return;
+    THEMELOCKED=true;
+
+    let time=750;
+    let modes=BUTTON.classList;
+
+    if(modes.contains("dark-mode") || INITIALDARKMODE){
+        setTimeout(()=>changeUI(
+            "light-mode-colors",
+            "dark-mode-colors",
+            `url('../static/images/sun.png')`
+        ),time);
+        modes.add("light-mode"); modes.remove("dark-mode");
+        /**
+         * stores the current theme in the application local storage
+         * Inspect > Application tab > Storage > localStorage
+        */
+        localStorage.setItem("mode","light-mode");
+        INITIALDARKMODE=false;
+    }
+    else if(modes.contains("light-mode") || modes.length===0){
+        setTimeout(()=>changeUI(
+            "dark-mode-colors",
+            "light-mode-colors",
+            `url('../static/images/moon.png')`
+        ),time);
+        modes.add("dark-mode"); modes.remove("light-mode");
+        /**
+         * stores the current theme in the application local storage
+         * Inspect > Application tab > Storage > localStorage
+        */
+        localStorage.setItem("mode","dark-mode");
+    }
+}
+
+/**
+ * controls persistent UI theme
+ * checks the local storge for the stored theme
+ * applies the theme to the UI
+ */
+document.addEventListener("DOMContentLoaded",()=>{
+    if(localStorage.getItem("mode")==="dark-mode"){
+        INITIALDARKMODE=true;
+        BUTTON.style.left="calc(100% - 30px)";
+        changeUI(
+            "dark-mode-colors",
+            "light-mode-colors",
+            `url('../static/images/moon.png')`
+        );
+    };
+});
