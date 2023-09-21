@@ -8,8 +8,6 @@
 
 :root{
     --red: #f50000;
-    --white: #f5f5f5;
-    --black: #333333;
 }
 
 body{
@@ -17,16 +15,83 @@ body{
     @include dimensions(100vw,100vw,100vh,100vh);
 }
 
+.dark-mode-colors{
+    --white: #333333;
+    --black: #f5f5f5;
+    --neu-light: #333333;
+    --neu-shadows: #141414;
+}
+
+.light-mode-colors{
+    --white: #f5f5f5;
+    --black: #333333;
+    --neu-light: #f5f5f5;
+    --neu-shadows: #626262;
+}
+
 #root{
     padding: 25px;
     padding-top: 50px;
     @include flex(column,center,center);
     @include dimensions(100%,100%,100%,100%);
+}
+
+#upper-container{
+    margin-bottom: 10px;
+    @include dimensions();
+    @include flex(row,center,center);
     #website-title{
         display: block;
-        margin-bottom: 10px;
+        margin-right: 15px;
         @include dimensions();
         @include text(40px,48px,"Black Ops One",var(--black));
+    }
+    #toggle-theme{
+        position: relative;
+        @include dimensions(100px,100px);
+        padding: 5px;
+        border-radius: 30px;
+        @include border(var(--black),2px);
+        span{
+            position: relative;
+            cursor: pointer;
+            display: block;
+            border-radius: 50%;
+            @include dimensions(30px,30px,30px,30px);
+            @include backgroundImage("../images/sun.png");
+            transition: left 0.75s linear;
+            animation-duration: 0.75s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+        .dark-mode{
+            left: 0;
+            animation-name: move-right;
+        }
+        @keyframes move-right {
+            from{
+                left: 0;
+                transform: rotate(0deg);
+            }
+            to{
+                left: calc(100% - 30px);
+                transform: rotate(360deg);
+            }
+        }
+        .light-mode{
+            left: calc(100% - 30px);
+            animation-name: move-left;
+        }
+        @keyframes move-left {
+            from{
+                left: calc(100% - 30px);
+                transform: rotate(360deg);
+            }
+            to{
+                left: 0;
+                transform: rotate(0deg);
+            }
+        }
     }
 }
 
@@ -44,8 +109,8 @@ body{
         @include border(var(--black),2px);
         $blur: 5px;
         $distance: 5px;
-        box-shadow: $distance $distance $blur #939393,
-        calc(-1 * $distance) calc(-1 * $distance) $blur var(--white);
+        box-shadow: $distance $distance $blur var(--neu-shadows),
+        calc(-1 * $distance) calc(-1 * $distance) $blur var(--neu-light);
     }
     #files-stage{
         min-height: 80%;
@@ -136,7 +201,7 @@ body{
             background-color: transparent;
             text-align: center;
             @include text(22px,24px,"Roboto Condensed",var(--black));
-            transition: box-shadow 0.15s ease-in-out;
+            // transition: box-shadow 0.15s linear;
             &:active{
                 box-shadow: none;
             }
