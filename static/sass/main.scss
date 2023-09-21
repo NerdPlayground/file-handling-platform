@@ -8,6 +8,7 @@
 
 :root{
     --red: #f50000;
+    --theme-time: 0.75s;
 }
 
 body{
@@ -59,8 +60,8 @@ body{
             border-radius: 50%;
             @include dimensions(30px,30px,30px,30px);
             @include backgroundImage("../images/sun.png");
-            transition: left 0.75s linear;
-            animation-duration: 0.75s;
+            transition: left var(--theme-time) linear;
+            animation-duration: var(--theme-time);
             animation-timing-function: linear;
             animation-fill-mode: forwards;
         }
